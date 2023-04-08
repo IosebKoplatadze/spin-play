@@ -5,7 +5,7 @@ import BonusScreen from './screens/BonusScreen';
 
 export type screen = 'title' | 'bonus';
 const App = () => {
-  const [screen, setScreen] = useState<screen>('title');
+  const [screen, setScreen] = useState<screen>('bonus');
 
   const Screen = useMemo(() => {
     switch (screen) {

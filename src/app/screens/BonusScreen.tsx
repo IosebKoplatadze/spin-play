@@ -1,18 +1,27 @@
-import { Container, Text } from '@pixi/react';
-import { FC, memo, useMemo } from 'react';
-import { BlurFilter } from 'pixi.js';
+import { Container } from '@pixi/react';
+import { FC, memo } from 'react';
 import { IScreenProps } from './IScreenProps';
+import Wheel from '../components/Wheel';
+import Button from '../components/Button';
+import { useResize } from '../shared/hooks/useResize';
 
 const BonusScreen: FC<IScreenProps> = () => {
-  const blurFilter = useMemo(() => new BlurFilter(4), []);
-  console.log(111111111111);
+  const { width, height } = useResize();
+  const handleSpin = () => {
+    console.log('SPIN');
+  };
 
   return (
-    <Container x={400} y={330}>
-      <Text
-        text="Hello World"
-        anchor={{ x: 0.5, y: 0.5 }}
-        filters={[blurFilter]}
+    <Container>
+      <Wheel x={500} y={height / 2} />
+      <Button
+        width={400}
+        height={200}
+        text="SPIN"
+        fontSize={100}
+        x={width - 500}
+        y={height / 2 - 100}
+        onClick={handleSpin}
       />
     </Container>
   );
