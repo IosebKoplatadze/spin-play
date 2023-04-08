@@ -1,23 +1,27 @@
-import { Stage } from '@pixi/react';
-import { memo, useMemo } from 'react';
-import { useResize } from './shared/hooks/useResize';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Background from './components/Background';
+import { memo, useMemo, useState } from 'react';
 import TitleScreen from './screens/TitleScreen';
+import World from './components/World';
+import BonusScreen from './screens/BonusScreen';
 
+export type screen = 'title' | 'bonus';
 const App = () => {
-  const { width, height } = useResize();
+  const [screen, setScreen] = useState<screen>('title');
+
+  const Screen = useMemo(() => {
+    switch (screen) {
+      case 'title':
+        return TitleScreen;
+      case 'bonus':
+        return BonusScreen;
+      default:
+        return TitleScreen;
+    }
+  }, [screen]);
 
   return (
-    <Stage style={{ cursor: 'none' }} height={height} width={width}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Background width={width} />}>
-            <Route index element={<TitleScreen />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </Stage>
+    <World>
+      <Screen onNavigate={setScreen} />
+    </World>
   );
 };
 
