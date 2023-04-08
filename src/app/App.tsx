@@ -1,4 +1,3 @@
-import { BlurFilter } from 'pixi.js';
 import { Stage } from '@pixi/react';
 import { memo, useMemo } from 'react';
 import { useResize } from './shared/hooks/useResize';
@@ -10,7 +9,7 @@ const App = () => {
   const { width, height } = useResize();
 
   return (
-    <Stage height={height} width={width}>
+    <Stage style={{ cursor: 'none' }} height={height} width={width}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Background width={width} />}>
