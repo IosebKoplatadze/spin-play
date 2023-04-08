@@ -16,7 +16,12 @@
     "url": "https://github.com/IosebKoplatadze/spin-play/issues"
   },
   "homepage": "https://github.com/IosebKoplatadze/spin-play#readme",
-  "dependencies": {
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.8.3",
+    "process": "^0.11.10",
+    "punycode": "^1.4.1",
+    "querystring-es3": "^0.2.1",
+    "react-router-dom": "^6.10.0",
     "@pixi/react": "^7.0.3",
     "@types/react": "^18.0.33",
     "@types/react-dom": "^18.0.11",
@@ -24,11 +29,5 @@
     "pixi.js": "^7.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "@parcel/transformer-sass": "^2.8.3",
-    "process": "^0.11.10",
-    "punycode": "^1.4.1",
-    "querystring-es3": "^0.2.1"
   }
 }

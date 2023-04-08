@@ -1,25 +1,25 @@
 import { BlurFilter } from 'pixi.js';
-import { Stage, Container, Sprite, Text } from '@pixi/react';
-import { useMemo } from 'react';
-import background from '../assets/images/background.png';
-import { useResize } from '../shared/hooks/useResize';
+import { Stage } from '@pixi/react';
+import { memo, useMemo } from 'react';
+import { useResize } from './shared/hooks/useResize';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Background from './components/Background';
+import TitleScreen from './screens/TitleScreen';
 
-export const App = () => {
-  const blurFilter = useMemo(() => new BlurFilter(4), []);
-
+const App = () => {
   const { width, height } = useResize();
 
   return (
     <Stage height={height} width={width}>
-      <Sprite image={background} width={width} />
-
-      <Container x={400} y={330}>
-        <Text
-          text="Hello World"
-          anchor={{ x: 0.5, y: 0.5 }}
-          filters={[blurFilter]}
-        />
-      </Container>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Background width={width} />}>
+            <Route index element={<TitleScreen />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </Stage>
   );
 };
+
+export default memo(App);
