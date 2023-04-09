@@ -25,11 +25,12 @@ const SLICES = new Array(8)
 
 export interface Props {
   started: boolean;
+  onStopped?: (angle: number) => void;
   x?: number;
   y?: number;
 }
 
-const Wheel: FC<Props> = ({ started, x, y }) => {
+const Wheel: FC<Props> = ({ started, x, y, onStopped }) => {
   const [activeSliceIndex, setActiveSliceIndex] = useState(0);
   const textStyles = useMemo(
     () => new TextStyle({ fill: 'red', fontSize: 40, fontWeight: 'bold' }),
@@ -67,7 +68,11 @@ const Wheel: FC<Props> = ({ started, x, y }) => {
         </Container>
       ))}
 
-      <Arrow started={started} onAngleChange={handleAngleChange} />
+      <Arrow
+        started={started}
+        onAngleChange={handleAngleChange}
+        onStopped={onStopped}
+      />
       <Sprite image={wheelCenter} anchor={0.5} />
     </Container>
   );
