@@ -1,19 +1,20 @@
 import { Container } from '@pixi/react';
-import { FC, memo } from 'react';
+import { FC, memo, useState } from 'react';
 import { IScreenProps } from './IScreenProps';
 import Wheel from '../components/Wheel';
 import Button from '../components/Button';
 import { useResize } from '../shared/hooks/useResize';
 
 const BonusScreen: FC<IScreenProps> = () => {
+  const [started, setStarted] = useState(false);
   const { width, height } = useResize();
   const handleSpin = () => {
-    console.log('SPIN');
+    setStarted((prevStarted) => !prevStarted);
   };
 
   return (
     <Container>
-      <Wheel x={500} y={height / 2} />
+      <Wheel started={started} x={500} y={height / 2} />
       <Button
         width={400}
         height={200}
