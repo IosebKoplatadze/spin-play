@@ -1,6 +1,6 @@
 import { Graphics, useTick } from '@pixi/react';
 import { Graphics as PIXIGraphics } from 'pixi.js';
-import { FC, memo, useCallback, useState } from 'react';
+import { FC, memo, useCallback, useEffect, useState } from 'react';
 
 export interface Props {
   started: boolean;
@@ -10,6 +10,12 @@ export interface Props {
 const Arrow: FC<Props> = ({ started, onAngleChange, onStopped }) => {
   const [angle, setAngle] = useState(0);
   const [speed, setSpeed] = useState(10);
+
+  useEffect(() => {
+    if (started) {
+      setSpeed(10);
+    }
+  }, [started]);
 
   useTick((delta) => {
     if (started) {
